@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcul pourboire avant taxe</title>
+
+  <!-- Add your custom icon -->
+  <link rel="apple-touch-icon" href="icon.png"> <!-- Replace with your icon's path -->
+  <link rel="icon" href="icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Pourboire">
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #2e7d32;
+      text-align: center;
+    }
+
+    label, input {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+
+    button {
+      margin: 10px 0;
+      font-size: 1.1em;
+      padding: 10px;
+      width: 100%;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .results {
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Calcul pourboire<br>Before-Tax Tip Calculator</h1>
+
+  <label for="amount">Montant avant taxes / Amount before tax ($):</label>
+  <input type="number" id="amount" placeholder="Ex: 100" />
+
+  <button onclick="calculateTip(0.15)">15% Tip</button>
+  <button onclick="calculateTip(0.18)">18% Tip</button>
+  <button onclick="calculateTip(0.20)">20% Tip</button>
+
+  <div class="results" id="results"></div>
+
+  <script>
+    function calculateTip(tipRate) {
+      const beforeTax = parseFloat(document.getElementById('amount').value);
+      const taxRate = 0.14975;
+
+      if (isNaN(beforeTax)) {
+        alert("Entrez un montant valide.");
+        return;
+      }
+
+      const tax = beforeTax * taxRate;
+      const totalWithTax = beforeTax + tax;
+      const tip = beforeTax * tipRate;
+      const grandTotal = totalWithTax + tip;
+
+      document.getElementById('results').innerHTML = `
+        <p>Tip (${(tipRate * 100).toFixed(0)}%): $${tip.toFixed(2)}</p>
+        <p>Total avec taxes + pourboire: $${grandTotal.toFixed(2)}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
