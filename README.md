@@ -1,1 +1,0 @@
-# Calcul_pourboire_avant_taxe
